@@ -63,8 +63,23 @@ public class AdaptateurAlgorithme {
      * @param largeur     la largeur de la carte
      * @param hauteur     la hauteur de la carte
      */
+
+
     static void ajouterAretesVoisines(Graphe<Case> graphe, Case currentCase, int x, int y, int largeur, int hauteur) {
-        // Implémentation à compléter en fonction des règles spécifiques du jeu ou de l'application.
+        /* int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}}; // Déplacements possibles : haut, bas, gauche, droite
+
+        for (int[] direction : directions) {
+            int newX = x + direction[0];
+            int newY = y + direction[1];
+
+            // Vérification si la nouvelle position est à l'intérieur de la carte
+            if (newX >= 0 && newX < largeur && newY >= 0 && newY < hauteur) {
+                Case neighborCase = new Case(null, newX, newY); // Création d'une case voisine (la tuile peut être null si elle n'est pas nécessaire)
+
+                // Ajout de la case voisine au graphe
+                graphe.ajouterNoeud(new Noeud<>(neighborCase));
+            }
+        } */
     }
 
     /**
