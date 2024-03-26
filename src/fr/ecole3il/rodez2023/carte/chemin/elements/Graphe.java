@@ -1,11 +1,5 @@
 package fr.ecole3il.rodez2023.carte.chemin.elements;
-
-import fr.ecole3il.rodez2023.carte.chemin.elements.Noeud;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * La classe Graphe sert à représenter et à manipuler un graphe.
@@ -15,15 +9,17 @@ import java.util.Map;
  * @param <E> le type générique pour la valeur des nœuds du graphe.
  */
 public class Graphe <E>{
-    private Map<Noeud<E>, Map<Noeud<E>, Double>> adjacence;
+
+    private Set<Noeud<E>> noeuds;
+    private Map<Noeud<E>, Map<Noeud<E>, Double>> adjacences;
 
     public Graphe() {
-        adjacence = new HashMap<>();
+        this.adjacences = new HashMap<>();
     }
 
     public void ajouterNoeud(Noeud<E> noeud){
-        if (!adjacence.containsKey(noeud)) {
-            adjacence.put(noeud, new HashMap<>());
+        if (!adjacences.containsKey(noeud)) {
+            adjacences.put(noeud, new HashMap<>());
         }
     }
 
@@ -37,8 +33,7 @@ public class Graphe <E>{
     public void ajouterArete(Noeud<E> depart, Noeud<E> arrivee, double cout){
         ajouterNoeud(depart);
         ajouterNoeud(arrivee);
-
-        adjacence.get(depart).put(arrivee, cout);
+        adjacences.get(depart).put(arrivee, cout);
     }
 
     /**
@@ -49,11 +44,10 @@ public class Graphe <E>{
      * @return le coût de l'arête entre les deux nœuds spécifiés, null si pas d'arête entre les nœuds.
      */
     public double getCoutArete(Noeud<E> depart, Noeud<E> arrivee){
-        if (!adjacence.containsKey(depart) || !adjacence.get(depart).containsKey(arrivee)) {
-            return Double.POSITIVE_INFINITY;
+        if (!adjacences.containsKey(depart) && adjacences.get(depart).containsKey(arrivee)) {
+                return adjacences.get(depart).get(arrivee);
         }
-        return adjacence.get(depart).get(arrivee);
-
+        return -1;
     }
 
     /**
@@ -63,7 +57,7 @@ public class Graphe <E>{
      */
     public List<Noeud<E>> getNoeuds(){
 
-        return new ArrayList<>(adjacence.keySet());
+        return new ArrayList<>(adjacences.keySet());
     }
 
     /**
@@ -73,10 +67,10 @@ public class Graphe <E>{
      * @return une liste contenant tous les voisins du nœud spécifié, une liste vide si le nœud n'existe pas dans le graphe.
      */
     public List<Noeud<E>> getVoisins(Noeud<E> noeud) {
-        if (!adjacence.containsKey(noeud)) {
-            return new ArrayList<>();
+        if (adjacences.containsKey(noeud)) {
+            return new ArrayList<>(adjacences.get(noeud).keySet());
         }
-        return new ArrayList<>(adjacence.get(noeud).keySet());
+        return new ArrayList<>();
     }
 
 }
