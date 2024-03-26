@@ -110,19 +110,35 @@ public class CarteGUI extends JFrame {
 				}
 			}
 		}
-
+/**
+ * Si les cases de départ et d'arrivée sont toutes deux définies, cette méthode utilise l'algorithme spécifié pour trouver le chemin le plus court entre elles sur la carte.
+ * Une fois le chemin trouvé, les cases qui le composent sont colorées en rouge dans la fenêtre graphique fournie.
+ * @param g l'objet Graphics permettant de dessiner dans la fenêtre graphique
+ */
 		if (caseDepart != null && caseArrivee != null) {
-			Chemin chemin = (Chemin) AdaptateurAlgorithme.trouverChemin(algorithme,carte, caseDepart.getX(), caseDepart.getY(), caseArrivee.getX(),caseArrivee.getY());
+			// Recherche du chemin le plus court
+			Chemin chemin = (Chemin) AdaptateurAlgorithme.trouverChemin(algorithme, carte, caseDepart.getX(), caseDepart.getY(), caseArrivee.getX(), caseArrivee.getY());
+
+			// Coloration des cases du chemin en rouge dans la fenêtre graphique
 			g.setColor(Color.RED);
 			for (Case c : chemin.getCases()) {
 				g.fillRect(c.getX() * 32, c.getY() * 32, 32, 32);
 			}
 		}
+
 	}
 
+	/**
+	 * Trouve et affiche le chemin le plus court entre la case de départ et la case d'arrivée sur la carte en utilisant l'algorithme spécifié.
+	 * Si les cases de départ et d'arrivée sont définies, la méthode recherche le chemin le plus court entre elles.
+	 * Une fois le chemin trouvé, les coordonnées des cases constituant le chemin sont affichées sur la console.
+	 */
 	private void trouverChemin() {
 		if (caseDepart != null && caseArrivee != null) {
-			Chemin chemin = AdaptateurAlgorithme.trouverChemin(algorithme,carte, caseDepart.getX(), caseDepart.getY(), caseArrivee.getX(),caseArrivee.getY());
+			// Recherche du chemin le plus court
+			Chemin chemin = AdaptateurAlgorithme.trouverChemin(algorithme, carte, caseDepart.getX(), caseDepart.getY(), caseArrivee.getX(), caseArrivee.getY());
+
+			// Affichage du chemin le plus court
 			System.out.println("Chemin le plus court :");
 			for (Case c : chemin.getCases()) {
 				System.out.println("[" + c.getX() + ", " + c.getY() + "]");
