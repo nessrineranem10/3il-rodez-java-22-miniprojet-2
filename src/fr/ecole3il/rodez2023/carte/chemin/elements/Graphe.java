@@ -1,6 +1,10 @@
 package fr.ecole3il.rodez2023.carte.chemin.elements;
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 /**
  * La classe Graphe sert à représenter et à manipuler un graphe.
  * Elle offre des méthodes pour ajouter des nœuds au graphe, ajouter des arêtes entre les nœuds avec des coûts associés,
@@ -8,69 +12,66 @@ import java.util.*;
  *
  * @param <E> le type générique pour la valeur des nœuds du graphe.
  */
-public class Graphe <E>{
 
-    private Set<Noeud<E>> noeuds;
-    private Map<Noeud<E>, Map<Noeud<E>, Double>> adjacences;
+public class Graphe<E> {
+    Map<Noeud<E>, Map<Noeud<E>, Double>> voisins;
 
     public Graphe() {
-        this.adjacences = new HashMap<>();
-    }
-
-    public void ajouterNoeud(Noeud<E> noeud){
-        if (!adjacences.containsKey(noeud)) {
-            adjacences.put(noeud, new HashMap<>());
-        }
+        this.voisins = new HashMap<>();
     }
 
     /**
-     * Méthode pour ajouter une arête pondérée entre deux nœuds du graphe.
-     *
-     * @param depart   le nœud de départ de l'arête.
-     * @param arrivee  le nœud d'arrivée de l'arête.
-     * @param cout     le coût de l'arête.
+     * Ajoute un noeud au graphe
+     * @param noeud le noeud à ajouter
+     */
+    public void ajouterNoeud(Noeud<E> noeud) {
+        if (!voisins.containsKey(noeud)) voisins.put(noeud, new HashMap<>());
+    }
+
+    /**
+     * Ajoute une arête au graphe
+     * @param depart le noeud de départ
+     * @param arrivee le noeud d'arrivée
+     * @param cout le coût de l'arête
      */
     public void ajouterArete(Noeud<E> depart, Noeud<E> arrivee, double cout){
+        assert depart != null && arrivee != null;
         ajouterNoeud(depart);
         ajouterNoeud(arrivee);
-        adjacences.get(depart).put(arrivee, cout);
+
+        voisins.get(depart).put(arrivee, cout);
     }
 
     /**
-     * Méthode pour obtenir le coût de l'arête entre deux nœuds spécifiés.
-     *
-     * @param depart   le nœud de départ de l'arête.
-     * @param arrivee  le nœud d'arrivée de l'arête.
-     * @return le coût de l'arête entre les deux nœuds spécifiés, null si pas d'arête entre les nœuds.
+     * Récupère le coût d'une arête
+     * @param depart le noeud de départ
+     * @param arrivee le noeud d'arrivée
+     * @return le coût de l'arête
      */
-    public double getCoutArete(Noeud<E> depart, Noeud<E> arrivee){
-        if (!adjacences.containsKey(depart) && adjacences.get(depart).containsKey(arrivee)) {
-                return adjacences.get(depart).get(arrivee);
+    public double getCoutArete(Noeud<E> depart, Noeud<E> arrivee) {
+        if (voisins.containsKey(depart) && voisins.get(depart).containsKey(arrivee)) {
+            return voisins.get(depart).get(arrivee);
         }
-        return -1;
+        return Double.POSITIVE_INFINITY;
     }
 
     /**
-     * Méthode pour obtenir une liste contenant tous les nœuds du graphe.
-     *
-     * @return une liste contenant tous les nœuds du graphe.
+     * Récupère la liste des noeuds du graphe
+     * @return la liste des noeuds du graphe
      */
     public List<Noeud<E>> getNoeuds(){
-
-        return new ArrayList<>(adjacences.keySet());
+        return new ArrayList<>(voisins.keySet());
     }
 
     /**
-     * Méthode pour obtenir une liste contenant tous les voisins d'un nœud spécifié.
-     *
-     * @param noeud le nœud dont on souhaite obtenir les voisins.
-     * @return une liste contenant tous les voisins du nœud spécifié, une liste vide si le nœud n'existe pas dans le graphe.
+     * Récupère la liste des voisins d'un noeud
+     * @param noeud le noeud dont on veut les voisins
+     * @return la liste des voisins du noeud
      */
-    public List<Noeud<E>> getVoisins(Noeud<E> noeud) {
-        if (adjacences.containsKey(noeud)) {
-            return new ArrayList<>(adjacences.get(noeud).keySet());
+    public List<Noeud<E>> getVoisins(Noeud<E> noeud){
+        if (voisins.containsKey(noeud)) {
+            return new ArrayList<>(voisins.get(noeud).keySet());
         }
         return new ArrayList<>();
     }
-
 }

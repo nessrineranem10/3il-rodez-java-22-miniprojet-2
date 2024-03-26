@@ -1,4 +1,4 @@
-package fr.ecole3il.rodez2023.carte.elements;
+package fr.ecole3il.rodez2023.carte.chemin.elements;
 
 /**
  * La classe Case représente une case sur une carte, caractérisée par une tuile et des coordonnées (x, y).

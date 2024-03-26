@@ -9,8 +9,8 @@ package fr.ecole3il.rodez2023.carte.manipulateurs;
 
 import java.util.Random;
 
-import fr.ecole3il.rodez2023.carte.elements.Carte;
-import fr.ecole3il.rodez2023.carte.elements.Tuile;
+import fr.ecole3il.rodez2023.carte.chemin.elements.Carte;
+import fr.ecole3il.rodez2023.carte.chemin.elements.Tuile;
 
 public class GenerateurCarte {
     private static final int LARGEUR_PAR_DEFAUT = 10; // Largeur par défaut de la carte

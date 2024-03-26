@@ -5,20 +5,22 @@ import fr.ecole3il.rodez2023.carte.chemin.elements.Noeud;
 
 import java.util.*;
 
-public class AlgorithmeDijkstra<E> implements AlgorithmeChemin<E> {
-
+public class AlgorithmeAEtoile<E> implements AlgorithmeChemin<E> {
     @Override
     public List<Noeud<E>> trouverChemin(Graphe<E> graphe, Noeud<E> depart, Noeud<E> arrivee) {
-        Map<Noeud<E>, Double> couts = new HashMap<>();
+        Map<Noeud<E>, Double> coutEstime = new HashMap<>();
+        Map<Noeud<E>, Double> coutActuel = new HashMap<>();
         Map<Noeud<E>, Noeud<E>> predecesseurs = new HashMap<>();
 
         for (Noeud<E> noeud : graphe.getNoeuds()) {
-            couts.put(noeud, Double.POSITIVE_INFINITY);
+            coutEstime.put(noeud, Double.POSITIVE_INFINITY);
+            coutActuel.put(noeud, Double.POSITIVE_INFINITY);
             predecesseurs.put(noeud, null);
         }
-        couts.put(depart, 0.0);
+        coutEstime.put(depart, 0.0);
+        coutActuel.put(depart, 0.0);
 
-        PriorityQueue<Noeud<E>> filePriorite = new PriorityQueue<>((n1, n2) -> (int) (couts.get(n1) - couts.get(n2)));
+        PriorityQueue<Noeud<E>> filePriorite = new PriorityQueue<>((n1, n2) -> (int) (coutEstime.get(n1) - coutEstime.get(n2)));
         filePriorite.add(depart);
 
         while (!filePriorite.isEmpty()) {
@@ -26,25 +28,24 @@ public class AlgorithmeDijkstra<E> implements AlgorithmeChemin<E> {
             if (noeud.equals(arrivee)) break;
 
             for (Noeud<E> voisin : graphe.getVoisins(noeud)) {
-                double cout = couts.get(noeud) + graphe.getCoutArete(noeud, voisin);
-                if (cout < couts.get(voisin)) {
-                    couts.put(voisin, cout);
+                double cout = coutActuel.get(noeud) + graphe.getCoutArete(noeud, voisin);
+                if (cout < coutActuel.get(voisin)) {
                     predecesseurs.put(voisin, noeud);
+                    coutActuel.put(voisin, cout);
+                    coutEstime.put(voisin, cout);
                     filePriorite.add(voisin);
                 }
             }
         }
 
-        List<Noeud<E>> cheminLePlusCourt = new ArrayList<>();
+        List<Noeud<E>> chemin = new ArrayList<>();
         Noeud<E> noeud = arrivee;
         while (noeud != null) {
-            cheminLePlusCourt.add(0, noeud);
+            chemin.add(noeud);
             noeud = predecesseurs.get(noeud);
         }
-        Collections.reverse(cheminLePlusCourt);
+        Collections.reverse(chemin);
 
-        return cheminLePlusCourt;
+        return chemin;
     }
-
-
 }

@@ -116,16 +116,16 @@ Ainsi, bien que notre projet se concentre sur une carte de tuiles en 2D, les pri
 - `fr.ecole3il.rodez2023.carte.elements.GenerateurCarte` :
     Cette classe est responsable de la génération aléatoire de cartes. Elle contient des méthodes pour générer une carte avec des dimensions spécifiques ou avec des dimensions par défaut, ainsi que pour afficher une carte donnée. La méthode `main` permet de tester la génération et l'affichage d'une carte aléatoire.
 
-- `fr.ecole3il.rodez2023.carte.elements.Carte` :
+- `fr.ecole3il.rodez2023.carte.chemin.elements.Carte` :
     La classe `Carte` représente une carte composée de tuiles disposées en une grille bidimensionnelle. Elle contient des méthodes pour accéder à une tuile spécifique sur la carte, ainsi que pour obtenir la largeur et la hauteur de la carte.
 
-- `fr.ecole3il.rodez2023.carte.elements.Case` :
+- `fr.ecole3il.rodez2023.carte.chemin.elements.Case` :
     La classe `Case` représente une case sur une carte, caractérisée par une tuile et des coordonnées (x, y). Elle permet de conserver la position (x, y) d'une tuile sur une carte. La méthode `toString` est redéfinie pour obtenir une représentation textuelle de la case.
 
-- `fr.ecole3il.rodez2023.carte.elements.Chemin` :
+- `fr.ecole3il.rodez2023.carte.chemin.elements.Chemin` :
     La classe `Chemin` représente un chemin sur une carte, composé d'une liste de cases. Elle fournit des méthodes pour accéder aux cases du chemin et pour afficher le chemin sur la console.
 
-- `fr.ecole3il.rodez2023.carte.elements.Tuile` (énumération) :
+- `fr.ecole3il.rodez2023.carte.chemin.elements.Tuile` (énumération) :
     L'énumération `Tuile` représente les différents types de tuiles pouvant être présents sur une carte.
     Chaque type de tuile a une pénalité associée qui indique la difficulté de traverser cette tuile.
 
