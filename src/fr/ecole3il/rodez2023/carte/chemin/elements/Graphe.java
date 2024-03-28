@@ -74,4 +74,20 @@ public class Graphe<E> {
         }
         return new ArrayList<>();
     }
+    /**
+     * Retourne le nœud correspondant aux coordonnées spécifiées.
+     *
+     * @param x La coordonnée x de la case recherchée.
+     * @param y La coordonnée y de la case recherchée.
+     * @return Le nœud correspondant aux coordonnées spécifiées, ou null si aucun nœud n'est trouvé.
+     */
+    public Noeud<E> getNoeud(int x, int y) {
+        for (Noeud<E> noeud : this.getNoeuds()) {
+            Case caseActuelle = (Case) noeud.getValeur();
+            if (caseActuelle.getX() == x && caseActuelle.getY() == y) {
+                return noeud;
+            }
+        }
+        return null;
+    }
 }

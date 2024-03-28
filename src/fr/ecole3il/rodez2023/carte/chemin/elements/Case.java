@@ -54,3 +54,4 @@ public class Case {
         return "Case [tuile=" + tuile + ", x=" + x + ", y=" + y + "]";
     }
 }
+
