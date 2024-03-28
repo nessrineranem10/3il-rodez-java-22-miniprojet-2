@@ -1,7 +1,11 @@
+Ressenti :
+
+            Je dirais que c'était un projet assez simple malgré le fait que j'ai eu un petit bug, le projet compile. Je n'ai pas demandé beaucoup d'aide, sauf pour la méthode `trouverChemin`, que j'ai trouvée compliquée, mais à part ça, c'est un projet réalisable qui était bien détaillé et plus compréhensible que le premier. Le temps était également très suffisant pour ce genre de projet, donc j'avais moins de stress, mais j'étais quand même stressé. Je sais que le projet ne sera pas parfait, mais j'ai fait de mon mieux et il compile !
+
 Question : Quelle structure de données pourrait être utilisée pour stocker les relations entre les nœuds du graphe et les informations associées à ces relations, comme les coûts des arêtes ?
 
             La structure liste d'adjacence.
-        
+            
 Question : Pourquoi pensez-vous que les classes Noeud et Graphe ont été définies avec des paramètres génériques ?
 
             Car elles permetent d'avoir une grande souplesse, qui permet de développer avec différents types de données tous ça en bénéficiant de la réutilisation du code, de la flexibilité de conception et de la sécurité de type
