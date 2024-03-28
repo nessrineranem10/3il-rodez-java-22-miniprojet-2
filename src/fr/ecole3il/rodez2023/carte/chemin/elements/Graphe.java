@@ -1,10 +1,9 @@
 package fr.ecole3il.rodez2023.carte.chemin.elements;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+
 /**
  * La classe Graphe sert à représenter et à manipuler un graphe.
  * Elle offre des méthodes pour ajouter des nœuds au graphe, ajouter des arêtes entre les nœuds avec des coûts associés,
