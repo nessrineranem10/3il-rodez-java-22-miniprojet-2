@@ -55,5 +55,32 @@ public class Case {
     public String toString() {
         return "Case [tuile=" + tuile + ", x=" + x + ", y=" + y + "]";
     }
+    /**
+     * Méthode de comparaison pour déterminer l'égalité de cette Case avec un autre objet.
+     * Deux objets Case sont considérés égaux si et seulement si ils ont les mêmes coordonnées (x, y)
+     * et contiennent la même tuile.
+     *
+     * @param o L'objet à comparer avec cette Case pour l'égalité.
+     * @return true si les objets sont égaux, false sinon.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Case aCase = (Case) o;
+        return x == aCase.x && y == aCase.y && tuile == aCase.tuile;
+    }
+
+    /**
+     * Méthode de calcul du code de hachage pour cette Case.
+     * Le code de hachage est calculé en fonction des attributs 'tuile', 'x' et 'y' de la Case.
+     *
+     * @return Le code de hachage calculé pour cette Case.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(tuile, x, y);
+    }
+
 }
 

@@ -43,6 +43,15 @@ public class AdaptateurAlgorithme {
                 ajouterAretesVoisines(graphe, caseCourante, i, j, largeur, hauteur);
             }
         }
+
+        // Parcours de chaque case de la carte pour créer les noeuds du graphe
+        for (int i = 0; i < largeur; i++) {
+            for (int j = 0; j < hauteur; j++) {
+                Tuile tuileCourante = carte.getTuile(i, j);
+                Case caseCourante = new Case(tuileCourante, i, j);
+                ajouterAretesVoisines(graphe, caseCourante, i, j, largeur, hauteur);
+            }
+        }
         return graphe;
     }
 

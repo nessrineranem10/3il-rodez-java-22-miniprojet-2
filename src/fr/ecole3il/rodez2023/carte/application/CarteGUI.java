@@ -117,7 +117,7 @@ public class CarteGUI extends JFrame {
  */
 		if (caseDepart != null && caseArrivee != null) {
 			// Recherche du chemin le plus court
-			Chemin chemin = (Chemin) AdaptateurAlgorithme.trouverChemin(algorithme, carte, caseDepart.getX(), caseDepart.getY(), caseArrivee.getX(), caseArrivee.getY());
+			Chemin chemin =  AdaptateurAlgorithme.trouverChemin(algorithme, carte, caseDepart.getX(), caseDepart.getY(), caseArrivee.getX(), caseArrivee.getY());
 
 			// Coloration des cases du chemin en rouge dans la fenêtre graphique
 			g.setColor(Color.RED);
