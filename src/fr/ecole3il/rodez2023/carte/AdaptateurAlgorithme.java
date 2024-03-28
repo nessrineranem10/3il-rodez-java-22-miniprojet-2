@@ -10,24 +10,17 @@ import java.util.List;
  */
 public class AdaptateurAlgorithme {
 
-    /**
-     * Trouve un chemin entre deux points sur une carte en utilisant un algorithme de recherche de chemin spécifié.
-     *
-     * @param algorithme l'algorithme de recherche de chemin à utiliser
-     * @param carte      la carte sur laquelle trouver le chemin
-     * @param xDepart    la coordonnée x du point de départ
-     * @param yDepart    la coordonnée y du point de départ
-     * @param xArrivee   la coordonnée x du point d'arrivée
-     * @param yArrivee   la coordonnée y du point d'arrivée
-     * @return le chemin trouvé entre les deux points
-     */
-    public static Chemin trouverChemin(AlgorithmeChemin<Case> algorithme, Carte carte, int xDepart, int yDepart, int xArrivee, int yArrivee) {
+    public static Chemin trouverChemin(AlgorithmeChemin<Case> algorithme, Carte carte, int xDepart, int yDepart, int xArrivee, int yArrivee){
         Graphe<Case> graphe = creerGraphe(carte);
-        Noeud<Case> depart = graphe.getNoeuds().get(xDepart * carte.getHauteur() + yDepart);
-        Noeud<Case> arrivee = graphe.getNoeuds().get(xArrivee * carte.getHauteur() + yArrivee);
-        List<Noeud<Case>> cheminNoeuds = algorithme.trouverChemin(graphe, depart, arrivee);
-        afficherChemin(cheminNoeuds);
-        return new Chemin(convertirNoeudsEnCases(cheminNoeuds));
+        Noeud<Case> noeudDepart = graphe.getNoeud(xDepart, yDepart);
+        Noeud<Case> noeudArrivee = graphe.getNoeud(xArrivee, yArrivee);
+        List<Noeud<Case>> cheminNoeuds = algorithme.trouverChemin(graphe, noeudDepart, noeudArrivee);
+        List<Case> cheminCases = new ArrayList<>();
+        for (Noeud<Case> noeud : cheminNoeuds) {
+            cheminCases.add(noeud.getValeur());
+        }
+
+        return new Chemin(cheminCases);
     }
 
     /**

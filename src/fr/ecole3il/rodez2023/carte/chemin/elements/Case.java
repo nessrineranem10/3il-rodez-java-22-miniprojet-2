@@ -1,5 +1,7 @@
 package fr.ecole3il.rodez2023.carte.chemin.elements;
 
+import java.util.Objects;
+
 /**
  * La classe Case représente une case sur une carte, caractérisée par une tuile et des coordonnées (x, y).
  * Elle permet de conserver la position (x, y) d'une tuile sur une carte.
